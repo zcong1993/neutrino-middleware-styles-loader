@@ -3,8 +3,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const cssLoaders = require('./css-loaders')
 
 const MODULES = path.join(__dirname, 'node_modules')
+const ENV = process.env.NODE_ENV || 'development'
 
-module.exports = (neutrino, {
+module.exports = ({ config }, {
   minimize,
   extractCSS,
   sourceMap,
@@ -12,7 +13,6 @@ module.exports = (neutrino, {
   cssModules,
   autoprefixer
 } = {}) => {
-  const config = neutrino.config
   postcss.plugins = postcss.plugins || []
 
   if (autoprefixer !== false) {
@@ -21,7 +21,7 @@ module.exports = (neutrino, {
 
   const cssOptions = {
     minimize,
-    extract: extractCSS,
+    extract: extractCSS && ENV === 'production',
     sourceMap: Boolean(sourceMap),
     postcss,
     cssModules
@@ -39,30 +39,14 @@ module.exports = (neutrino, {
         .end()
       .end()
 
-  // production mode
-  neutrino.on('prebuild', () => {
-    // only use ExtractTextPlugin before creating a production build
-    if (extractCSS) {
-      config.plugin('extract-css')
-        .use(ExtractTextPlugin, [{
-          filename: '[name].[contenthash:8].css',
-          allChunks: true
-        }])
-    }
-    cssLoaders(config, cssOptions)
-  })
+  // only use ExtractTextPlugin
+  if (extractCSS && ENV === 'production') {
+    config.plugin('extract-css')
+      .use(ExtractTextPlugin, [{
+        filename: '[name].[contenthash:8].css',
+        allChunks: true
+      }])
+  }
 
-  // dev mode
-  neutrino.on('prestart', () => {
-    // disable extractCSS
-    cssOptions.extract = false
-    cssLoaders(config, cssOptions)
-  })
-
-  // test mode
-  neutrino.on('test', () => {
-    // disable extractCSS
-    cssOptions.extract = false
-    cssLoaders(config, cssOptions)
-  })
+  cssLoaders(config, cssOptions)
 }
