@@ -39,17 +39,6 @@ module.exports = (neutrino, {
         .end()
       .end()
 
-  if (extractCSS) {
-    // only use ExtractTextPlugin before creating a production build
-    neutrino.on('prebuild', () => {
-      config.plugin('extract-css')
-        .use(ExtractTextPlugin, [{
-          filename: '[name].[contenthash:8].css',
-          allChunks: true
-        }])
-    })
-  }
-
   // production mode
   neutrino.on('prebuild', () => {
     // only use ExtractTextPlugin before creating a production build
