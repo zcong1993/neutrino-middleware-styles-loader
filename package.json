@@ -1,0 +1,41 @@
+{
+  "name": "neutrino-middleware-styles-loader",
+  "version": "0.0.0",
+  "description": "Neutrino middleware for loading and importing all kinds of stylesheets from modules",
+  "repository": {
+    "url": "zcong1993/neutrino-middleware-styles-loader",
+    "type": "git"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "jest && npm run lint",
+    "lint": "xo"
+  },
+  "author": "zcong1993 <1005997919@qq.com>",
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.1.1",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "postcss-loader": "^2.0.6",
+    "webpack": "^3.0.0",
+    "webpack-handle-css-loader": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-rem": "^3.0.0",
+    "jest-cli": "^19.0.0",
+    "neutrino": "^6.1.4",
+    "xo": "^0.18.0"
+  },
+  "xo": {
+    "extends": "rem",
+    "envs": [
+      "jest"
+    ]
+  }
+}
