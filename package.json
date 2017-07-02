@@ -11,6 +11,15 @@
     "index.js",
     "css-loaders.js"
   ],
+  "keywords": [
+    "neutrino",
+    "neutrino-middleware",
+    "style-loader",
+    "css-loader",
+    "less-loader",
+    "scss-loader",
+    "zc"
+  ],
   "scripts": {
     "test": "jest && npm run lint",
     "lint": "xo"
