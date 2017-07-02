@@ -77,7 +77,7 @@ module.exports = {
 
 ## Options
 
-This lib using [webpack-handle-css-loader](webpack-handle-css-loader) create config.
+This lib using [webpack-handle-css-loader](https://github.com/egoist/webpack-handle-css-loader) create config.
 
 #### autoprefixer
 
@@ -110,7 +110,31 @@ Default: `false`
 
 Extract CSS into a single file.
 
-#### 
+#### minimize
+
+Type: `boolean`
+
+Default: `false`
+
+Minimize CSS files.
+
+#### sourceMap
+
+Type: `boolean`
+
+Default: `false`
+
+Generate sourcemaps.
+
+*Note:* If you want to use this, set `sourceMap: true`, and you also should set `config.devtool` option.
+
+#### postcss
+
+Type: `Array` `object`
+
+If you're using CLI, it searches for custom postcss config file using [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), and add `autoprefixer` to the top of it when `postcss` is an array or object.
+
+You can use this option to override it if you don't want extra config file for postcss.
 
 ## Contributing
 

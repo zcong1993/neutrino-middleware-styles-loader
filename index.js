@@ -15,28 +15,6 @@ module.exports = (neutrino, {
   const config = neutrino.config
   postcss.plugins = postcss.plugins || []
 
-  // if (sourceMap !== false) {
-  //   if (typeof sourceMap === 'string') {
-  //     // using custom sourceMap
-  //     config.devtool(sourceMap)
-  //   } else {
-  //     // using `source-map` in production mode
-  //     neutrino.on('prebuild', () => {
-  //       config.devtool('source-map')
-  //     })
-  //     // using `eval-source-map` in dev mode
-  //     neutrino.on('prestart', () => {
-  //       config.devtool('source-map')
-  //     })
-  //     // using `inline-source-map` intest mode
-  //     neutrino.on('test', () => {
-  //       config.devtool('inline-source-map')
-  //     })
-  //   }
-  //   config.output
-  //     .devtoolModuleFilenameTemplate(info => path.resolve(info.absoluteResourcePath))
-  // }
-
   if (autoprefixer !== false) {
     postcss.plugins.unshift(require('autoprefixer')(autoprefixer))
   }
@@ -72,5 +50,30 @@ module.exports = (neutrino, {
     })
   }
 
-  cssLoaders(config, cssOptions)
+  // production mode
+  neutrino.on('prebuild', () => {
+    // only use ExtractTextPlugin before creating a production build
+    if (extractCSS) {
+      config.plugin('extract-css')
+        .use(ExtractTextPlugin, [{
+          filename: '[name].[contenthash:8].css',
+          allChunks: true
+        }])
+    }
+    cssLoaders(config, cssOptions)
+  })
+
+  // dev mode
+  neutrino.on('prestart', () => {
+    // disable extractCSS
+    cssOptions.extract = false
+    cssLoaders(config, cssOptions)
+  })
+
+  // test mode
+  neutrino.on('test', () => {
+    // disable extractCSS
+    cssOptions.extract = false
+    cssLoaders(config, cssOptions)
+  })
 }
