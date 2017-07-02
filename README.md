@@ -84,7 +84,7 @@ This lib using [webpack-handle-css-loader](https://github.com/egoist/webpack-han
 Type: `object` `boolean`
 
 Default:
-```json
+```js
 {
   browsers: ['ie > 8', 'last 4 versions']
 }
