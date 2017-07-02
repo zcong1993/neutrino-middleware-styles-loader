@@ -8,7 +8,8 @@
   },
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "css-loaders.js"
   ],
   "scripts": {
     "test": "jest && npm run lint",

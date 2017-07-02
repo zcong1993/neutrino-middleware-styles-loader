@@ -2,22 +2,115 @@
 
 [![NPM version](https://img.shields.io/npm/v/neutrino-middleware-styles-loader.svg?style=flat)](https://npmjs.com/package/neutrino-middleware-styles-loader) [![NPM downloads](https://img.shields.io/npm/dm/neutrino-middleware-styles-loader.svg?style=flat)](https://npmjs.com/package/neutrino-middleware-styles-loader) [![CircleCI](https://circleci.com/gh/zcong1993/neutrino-middleware-styles-loader/tree/master.svg?style=shield)](https://circleci.com/gh/zcong1993/neutrino-middleware-styles-loader/tree/master)  
 
-> Neutrino middleware for loading and importing all kinds of stylesheets from modules
+> `neutrino-middleware-styles-loader` is Neutrino middleware for loading and importing all kinds of stylesheets from modules
 
-## Install
+> fork from [poi](https://github.com/egoist/poi/blob/master/packages/poi/lib/css-loaders.js)
+
+## Features
+
+- Support all kinds of stylesheets: `css`, `stylus`, `styl`, `sass`, `scss`, `less`
+- Easy config `minimize`, `extractCSS`, `sourceMap` as out-of-the-box feature
+- Support [css modules](https://github.com/css-modules/css-modules)
+- Customizing `postcss` and `autoprefixer`
+
+## Requirements
+
+- Node.js v6.10+
+- Yarn or npm client
+- Neutrino v6
+
+## Installation
 
 ```bash
-yarn add neutrino-middleware-styles-loader
+# yarn
+$ yarn add neutrino-middleware-styles-loader
+# npm
+$ npm install --save neutrino-middleware-styles-loader
 ```
 
 ## Usage
 
-```js
-const neutrinoMiddlewareStylesLoader = require('neutrino-middleware-styles-loader')
+*Note:* If you want to use one of these `stylus`, `styl`, `sass`, `scss`, `less`, you should install the `loader` by yourself. After install `less-loader` and `less`, you can use `*.less` now.
 
-neutrinoMiddlewareStylesLoader()
-//=> foo
+`neutrino-middleware-styles-loader` can be consumed from the Neutrino API, middleware, or presets. Require this package and plug it into Neutrino:
+
+```js
+// Using function middleware format
+const styles = require('neutrino-middleware-styles-loader')
+
+// Use with default options
+neutrino.use(styles)
+
+// Usage showing default options
+neutrino.use(styles, {
+  minimize: false,
+  extractCSS: false,
+  sourceMap: false,
+  postcss: {},
+  cssModules: false,
+  autoprefixer: false
+})
 ```
+
+```js
+// Using object or array middleware format
+
+// Use with default options
+module.exports = {
+  use: ['neutrino-middleware-styles-loader']
+}
+
+// Usage showing default options
+module.exports = {
+  use: [
+    ['neutrino-middleware-styles-loader', {
+      minimize: false,
+      extractCSS: false,
+      sourceMap: false,
+      postcss: {},
+      cssModules: false,
+      autoprefixer: false
+    }]
+  ]
+}
+```
+
+## Options
+
+This lib using [webpack-handle-css-loader](webpack-handle-css-loader) create config.
+
+#### autoprefixer
+
+Type: `object` `boolean`
+
+Default:
+```json
+{
+  browsers: ['ie > 8', 'last 4 versions']
+}
+```
+
+Options for [autoprefixer](https://github.com/postcss/autoprefixer), set to `false` to disable it.
+
+#### cssModules
+
+Type: `boolean`
+Default: `false`
+
+Process CSS using [css modules](https://github.com/css-modules/css-modules).
+
+Files ending with `.module.css` `.module.scss` `.module.less` etc also support CSS modules by default.
+
+To enable CSS modules for all CSS files, set `cssModules: true` in config file.
+
+#### extractCSS
+
+Type: `boolean`
+Default: `false`
+
+Extract CSS into a single file.
+
+#### 
 
 ## Contributing
 
