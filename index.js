@@ -1,8 +1,6 @@
-const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const cssLoaders = require('./css-loaders')
 
-const MODULES = path.join(__dirname, 'node_modules')
 const ENV = process.env.NODE_ENV || 'development'
 
 module.exports = ({ config }, {
@@ -26,18 +24,6 @@ module.exports = ({ config }, {
     postcss,
     cssModules
   }
-
-  config
-    .resolve
-      .modules
-        .add(MODULES)
-        .end()
-      .end()
-    .resolveLoader
-      .modules
-        .add(MODULES)
-        .end()
-      .end()
 
   // only use ExtractTextPlugin
   if (extractCSS && ENV === 'production') {
