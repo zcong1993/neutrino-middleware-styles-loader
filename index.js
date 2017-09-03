@@ -9,7 +9,8 @@ module.exports = ({ config }, {
   sourceMap,
   postcss = {},
   cssModules,
-  autoprefixer
+  autoprefixer,
+  externalLoaderOptions = {}
 } = {}) => {
   postcss.plugins = postcss.plugins || []
 
@@ -22,7 +23,8 @@ module.exports = ({ config }, {
     extract: extractCSS && ENV === 'production',
     sourceMap: Boolean(sourceMap),
     postcss,
-    cssModules
+    cssModules,
+    externalLoaderOptions
   }
 
   // only use ExtractTextPlugin

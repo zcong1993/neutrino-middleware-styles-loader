@@ -12,6 +12,7 @@
 - Easy config `minimize`, `extractCSS`, `sourceMap` as out-of-the-box feature
 - Support [css modules](https://github.com/css-modules/css-modules)
 - Customizing `postcss` and `autoprefixer`
+- Customizing loader options support 
 
 ## Requirements
 
@@ -48,7 +49,8 @@ neutrino.use(styles, {
   sourceMap: false,
   postcss: {},
   cssModules: false,
-  autoprefixer: false
+  autoprefixer: false,
+  externalLoaderOptions: {}
 })
 ```
 
@@ -69,7 +71,8 @@ module.exports = {
       sourceMap: false,
       postcss: {},
       cssModules: false,
-      autoprefixer: false
+      autoprefixer: false,
+      externalLoaderOptions: {}
     }]
   ]
 }
@@ -135,6 +138,35 @@ Type: `Array` `object`
 If you're using CLI, it searches for custom postcss config file using [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), and add `autoprefixer` to the top of it when `postcss` is an array or object.
 
 You can use this option to override it if you don't want extra config file for postcss.
+
+### externalLoaderOptions
+
+Type: `Object`
+
+You can add your custom loader options here, for example:
+
+```js
+module.exports = {
+  use: [
+    ['neutrino-middleware-styles-loader', {
+      minimize: false,
+      extractCSS: false,
+      sourceMap: false,
+      postcss: {},
+      cssModules: false,
+      autoprefixer: false,
+      externalLoaderOptions: {
+        css: {
+          localIdentName: '[name]__[local]--[hash:base64:5]'
+        },
+        less: {
+          // some options for less-loader here
+        }
+      }
+    }]
+  ]
+}
+```
 
 ## Related
 

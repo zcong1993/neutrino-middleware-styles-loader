@@ -24,10 +24,14 @@ module.exports = function (config, options) {
         .end()
 
     rule.use.forEach(use => {
+      let loaderOptions = use.options
+      if (options.externalLoaderOptions[lang]) {
+        loaderOptions = Object.assign({}, use.options, options.externalLoaderOptions[lang])
+      }
       context
         .use(use.loader)
           .loader(use.loader)
-          .options(use.options)
+          .options(loaderOptions)
     })
   }
 
@@ -44,10 +48,14 @@ module.exports = function (config, options) {
       .test(rule.test)
 
     rule.use.forEach(use => {
+      let loaderOptions = use.options
+      if (options.externalLoaderOptions[lang]) {
+        loaderOptions = Object.assign({}, use.options, options.externalLoaderOptions[lang])
+      }
       context
         .use(use.loader)
           .loader(use.loader)
-          .options(use.options)
+          .options(loaderOptions)
     })
   }
 }
