@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "eslint-config-rem": "^4.0.0",
-    "jest-cli": "^19.0.0",
+    "jest-cli": "^22.0.0",
     "neutrino": "^6.1.4",
     "xo": "^0.18.0"
   },
