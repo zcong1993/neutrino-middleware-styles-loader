@@ -13,19 +13,19 @@ test('loads middleware', () => {
 })
 
 test('uses middleware', () => {
-  const api = new Neutrino()
+  const api = Neutrino() // eslint-disable-line new-cap
 
   expect(() => api.use(mw())).not.toThrow()
 })
 
 test('uses with options', () => {
-  const api = new Neutrino()
+  const api = Neutrino() // eslint-disable-line new-cap
 
   expect(() => api.use(mw(), options)).not.toThrow()
 })
 
 test('instantiates', () => {
-  const api = new Neutrino()
+  const api = Neutrino() // eslint-disable-line new-cap
 
   api.use(mw())
 
@@ -33,7 +33,7 @@ test('instantiates', () => {
 })
 
 test('instantiates with options', () => {
-  const api = new Neutrino()
+  const api = Neutrino() // eslint-disable-line new-cap
 
   api.use(mw(), options)
 
