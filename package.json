@@ -40,7 +40,7 @@
     "eslint-config-rem": "^4.0.0",
     "jest-cli": "^22.0.0",
     "neutrino": "^8.0.0",
-    "xo": "^0.18.0"
+    "xo": "0.20.0"
   },
   "xo": {
     "extends": "rem",

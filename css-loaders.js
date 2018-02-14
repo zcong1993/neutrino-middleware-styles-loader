@@ -17,11 +17,11 @@ module.exports = function (config, options) {
       .rule(lang)
       .test(rule.test)
       .include
-        .add(filepath => {
-          // Not ends with `.module.xxx`
-          return !/\.module\.[a-z]+$/.test(filepath)
-        })
-        .end()
+      .add(filepath => {
+        // Not ends with `.module.xxx`
+        return !/\.module\.[a-z]+$/.test(filepath)
+      })
+      .end()
 
     rule.use.forEach(use => {
       let loaderOptions = use.options
@@ -30,8 +30,8 @@ module.exports = function (config, options) {
       }
       context
         .use(use.loader)
-          .loader(use.loader)
-          .options(loaderOptions)
+        .loader(use.loader)
+        .options(loaderOptions)
     })
   }
 
@@ -54,8 +54,8 @@ module.exports = function (config, options) {
       }
       context
         .use(use.loader)
-          .loader(use.loader)
-          .options(loaderOptions)
+        .loader(use.loader)
+        .options(loaderOptions)
     })
   }
 }

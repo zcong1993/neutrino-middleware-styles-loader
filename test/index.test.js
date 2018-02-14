@@ -1,6 +1,6 @@
 const { Neutrino } = require('neutrino')
 
-const mw = () => require('../')
+const mw = () => require('..')
 
 const options = {
   minimize: true,
