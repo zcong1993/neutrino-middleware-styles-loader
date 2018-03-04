@@ -12,7 +12,7 @@
 - Easy config `minimize`, `extractCSS`, `sourceMap` as out-of-the-box feature
 - Support [css modules](https://github.com/css-modules/css-modules)
 - Customizing `postcss` and `autoprefixer`
-- Customizing loader options support 
+- Customizing loader options support
 
 ## Requirements
 
@@ -46,6 +46,7 @@ neutrino.use(styles)
 neutrino.use(styles, {
   minimize: false,
   extractCSS: false,
+  filename: '[name].[contenthash:8].css',
   sourceMap: false,
   postcss: {},
   cssModules: false,
@@ -68,6 +69,7 @@ module.exports = {
     ['neutrino-middleware-styles-loader', {
       minimize: false,
       extractCSS: false,
+      filename: '[name].[contenthash:8].css',
       sourceMap: false,
       postcss: {},
       cssModules: false,
@@ -112,6 +114,13 @@ Type: `boolean`
 Default: `false`
 
 Extract CSS into a single file.
+
+### filename
+
+Type: `string`
+Default: `'[name].[contenthash:8].css'`
+
+Name of the extracted CSS file. Only applicable when `extractCSS` is `true`. May contain `[name]`, `[id]` and `[contenthash]`
 
 ### minimize
 

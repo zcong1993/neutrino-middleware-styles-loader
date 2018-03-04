@@ -6,6 +6,7 @@ const ENV = process.env.NODE_ENV || 'development'
 module.exports = ({ config }, {
   minimize,
   extractCSS,
+  filename = '[name].[contenthash:8].css',
   sourceMap,
   postcss = {},
   cssModules,
@@ -31,7 +32,7 @@ module.exports = ({ config }, {
   if (extractCSS && ENV === 'production') {
     config.plugin('extract-css')
       .use(ExtractTextPlugin, [{
-        filename: '[name].[contenthash:8].css',
+        filename,
         allChunks: true
       }])
   }
