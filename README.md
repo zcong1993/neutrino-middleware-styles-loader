@@ -1,3 +1,7 @@
+*Note:* Use the official package [@neutrinojs/style-loader](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages/style-loader). 
+
+There is alot of crossover with the most recent version [@neutrinojs/style-loader](https://github.com/mozilla-neutrino/neutrino-dev/tree/master/packages/style-loader), which supports alot of these features (extractCSS, custom loaders, css modules).
+
 # neutrino-middleware-styles-loader
 
 [![NPM version](https://img.shields.io/npm/v/neutrino-middleware-styles-loader.svg?style=flat)](https://npmjs.com/package/neutrino-middleware-styles-loader) [![NPM downloads](https://img.shields.io/npm/dm/neutrino-middleware-styles-loader.svg?style=flat)](https://npmjs.com/package/neutrino-middleware-styles-loader) [![CircleCI](https://circleci.com/gh/zcong1993/neutrino-middleware-styles-loader/tree/master.svg?style=shield)](https://circleci.com/gh/zcong1993/neutrino-middleware-styles-loader/tree/master)
